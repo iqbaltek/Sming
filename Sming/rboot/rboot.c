@@ -313,8 +313,10 @@ uint32 NOINLINE find_image(void) {
 		romconf->magic = BOOT_CONFIG_MAGIC;
 		romconf->version = BOOT_CONFIG_VERSION;
 		romconf->count = 2;
+		// romconf->roms[0] = SECTOR_SIZE * (BOOT_CONFIG_SECTOR + 1);
+		// romconf->roms[1] = (flashsize / 2) + (SECTOR_SIZE * (BOOT_CONFIG_SECTOR + 1));
 		romconf->roms[0] = SECTOR_SIZE * (BOOT_CONFIG_SECTOR + 1);
-		romconf->roms[1] = (flashsize / 2) + (SECTOR_SIZE * (BOOT_CONFIG_SECTOR + 1));
+		romconf->roms[1] = 0x71000;
 #ifdef BOOT_CONFIG_CHKSUM
 		romconf->chksum = calc_chksum((uint8*)romconf, (uint8*)&romconf->chksum);
 #endif
